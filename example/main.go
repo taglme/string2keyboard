@@ -18,6 +18,11 @@ func main() {
 	text = strings.Trim(text, "\n")
 	fmt.Println("Select text input field to write. Wait 5 sec to start writting...")
 	time.Sleep(5 * time.Second)
-	string2keyboard.KeyboardWrite(text)
+	err := string2keyboard.KeyboardWrite(text)
+	if err != nil {
+		fmt.Printf("Could not write as keyboard input. Error: %s", err.Error())
+	} else {
+		fmt.Println("Success!")
+	}
 
 }
