@@ -1,6 +1,9 @@
 package string2keyboard
 
 import (
+	"runtime"
+	"time"
+
 	"github.com/micmonay/keybd_event"
 )
 
@@ -15,6 +18,11 @@ func KeyboardWrite(textInput string) error {
 	if err != nil {
 		return err
 	}
+	// For linux, it is very important wait 2 seconds
+	if runtime.GOOS == "linux" {
+		time.Sleep(2 * time.Second)
+	}
+
 	//Should we skip next character in string
 	//Used if we found some escape sequence
 	skip := false
